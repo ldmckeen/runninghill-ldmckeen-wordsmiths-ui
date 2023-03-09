@@ -1,0 +1,57 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentWord.id">
+    <h4>Word</h4>
+    <div>
+      <label><strong>Name:</strong></label> {{ currentWord.name }}
+    </div>
+
+    <a
+      class="badge badge-warning"
+      routerLink="/words/{{ currentWord.id }}"
+    >
+      Edit
+    </a>
+  </div>
+
+  <div *ngIf="!currentWord">
+    <br />
+    <p>Please click on a Word Type...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentWord.id" class="edit-form">
+    <h4>Word</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentWord.name"
+          name="name"
+        />
+      </div>
+
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteWord()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateWord()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentWord.id">
+    <br />
+    <p>Cannot access this Word...</p>
+  </div>
+</ng-template>

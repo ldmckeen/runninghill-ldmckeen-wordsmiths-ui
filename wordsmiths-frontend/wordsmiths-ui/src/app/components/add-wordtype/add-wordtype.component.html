@@ -1,0 +1,25 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <h4>Add Wordtype</h4>
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="wordtype.name"
+          name="name"
+        />
+      </div>
+
+      <button (click)="saveWordtype()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Wordtype was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newWordtype()">Add</button>
+    </div>
+  </div>
+</div>
